@@ -1,0 +1,28 @@
+<h1>Events for <%= Date::MONTHNAMES[@start_date.month] %> <%= @start_date.year %></h1>
+<div class="calender_wrapper">
+  <nav>
+    <%= link_to "<< Previous month", isfit_events_path(month: @start_date.prev_month.month, year: @start_date.prev_month.year) %>
+    <%= link_to "Next month >>", isfit_events_path(month: @start_date.next_month.month, year: @start_date.next_month.year), class: "pull-right" %>
+  </nav>
+  <table class="table">
+    <thead>
+    <tr>
+      <% I18n.t('date.abbr_day_names').each do |day|  %>
+          <td><%= day %></td>
+      <% end  %>
+    </tr>
+    </thead>
+    <tbody>
+    <%= create_calender_start_padding(@start_date) %>
+
+    <% @range.each do |date| %>
+        <%= raw "<tr>" if date.monday? %>
+        <td><%=link_to date.day, on_date_isfit_events_path(month: date.month, year: date.year, day: date.day) %></td>
+        <%= raw "</tr>" if date.sunday? %>
+    <% end %>
+
+    <%= create_calender_end_padding(@end_date) %>
+    </tbody>
+  </table>
+</div>
+<%= link_to "New event", new_isfit_event_path %>

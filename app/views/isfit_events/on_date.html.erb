@@ -1,0 +1,21 @@
+<table class="table">
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Location</th>
+    <th>Start date</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <% @isfit_events.each do |isfit_event| %>
+    <tr>
+      <td><%= isfit_event.title %></td>
+      <td><%= isfit_event.description %></td>
+      <td><%= isfit_event.location %></td>
+      <td><%= isfit_event.start_date %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
